@@ -1,0 +1,41 @@
+namespace wsei
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var input1 = GetInput("Podaj pierwszą liczbę: ");
+            var input2 = GetInput("Podaj drugą liczbę: ");
+            var input3 = GetInput("Podaj trzecią liczbę: ");
+
+            if (input1 <= 100 && input2 <= 100 && input3 <= 100)
+            {
+                var sum = input1 + input2 + input3;
+                Console.WriteLine($"Suma liczb: {sum}");
+            }
+            else
+            {
+                Console.WriteLine("Liczby nie mogą przekraczać 100");
+            }
+        }
+
+        static int GetInput(string prompt)
+        {
+            int input;
+            bool isValid;
+
+            do
+            {
+                Console.Write(prompt);
+                isValid = int.TryParse(Console.ReadLine(), out input);
+
+                if (!isValid)
+                {
+                    Console.WriteLine("To nie jest poprawna liczba. Spróbuj ponownie.");
+                }
+            } while (!isValid);
+
+            return input;
+        }
+    }
+}
