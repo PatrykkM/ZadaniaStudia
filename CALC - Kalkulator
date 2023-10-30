@@ -1,0 +1,70 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string input;
+        while ((input = Console.ReadLine()) != null)
+        {
+            string[] data = input.Split(' ');
+
+            if (data.Length != 3)
+            {
+                Console.WriteLine("Niepoprawny format danych. Wprowadź symbol operacji i dwie liczby całkowite.");
+                continue;
+            }
+
+            char operation = data[0][0];
+            int operand1, operand2;
+
+            if (!int.TryParse(data[1], out operand1) || !int.TryParse(data[2], out operand2))
+            {
+                Console.WriteLine("Złe  dane. Wprowadź dwie liczby całkowite.");
+                continue;
+            }
+
+            int result = 0;
+
+            switch (operation)
+            {
+                case '+':
+                    result = operand1 + operand2;
+                    break;
+                case '-':
+                    result = operand1 - operand2;
+                    break;
+                case '*':
+                    result = operand1 * operand2;
+                    break;
+                case '/':
+                    if (operand2 != 0)
+                    {
+                        result = operand1 / operand2;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nie można dzielić przez zero.");
+                        continue;
+                    }
+                    break;
+                case '%':
+                    if (operand2 != 0)
+                    {
+                        result = operand1 % operand2;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nie można obliczyć reszty z dzielenia przez zero.");
+                        continue;
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Nieznany symbol operacji.");
+                    continue;
+            }
+
+            Console.WriteLine($"Wynik: {result}");
+        }
+    }
+}
