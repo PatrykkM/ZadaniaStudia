@@ -1,0 +1,32 @@
+using System;
+    class Program
+{
+    static void Main()
+    {
+     string input = Console.ReadLine();
+
+        string[] array = input.Split(' ');
+        if(array.Length != 3)
+        {
+            Console.WriteLine("podałeś złą ilość liczb");
+            return;
+        }
+        if (double.TryParse(array[0], out double A) &&
+           double.TryParse(array[1], out double B) &&
+           double.TryParse(array[2], out double C))
+        {
+            double discriminat = B * B - 4 * A * C;
+            if (discriminat > 0) {
+                Console.WriteLine(2);
+            }
+            else if(discriminat == 0) {
+                Console.WriteLine(1);
+            }
+            else
+            {
+                Console.WriteLine(0);
+            }
+        }
+    }
+
+}
